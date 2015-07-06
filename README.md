@@ -4,8 +4,6 @@ This document describes how I set up my developer environment on a new MacBook o
 
 The document assumes you are new to Mac. The steps below were tested on **OS X Mountain Lion**.
 
-If you have any comments or suggestions, feel free to give me a shout [on Twitter](https://twitter.com/nicolahery)!
-
 - [System update](#system-update)
 - [System preferences](#system-preferences)
 - [Google Chrome](#google-chrome)
@@ -13,9 +11,9 @@ If you have any comments or suggestions, feel free to give me a shout [on Twitte
 - [Homebrew](#homebrew)
 - [Beautiful terminal](#beautiful-terminal)
 - [Dotfile source control](#dotfile-source-control)
-- [iTerm2](#iterm2)
 - [Git](#git)
 - [Sublime Text](#sublime-text)
+- [Customize Sublime Text Packages](#customize-sublime-text-packages)
 - [Python](#python)
 - [Node.js](#nodejs)
 - [Ruby and rbenv](#ruby-and-rbenv)
@@ -25,6 +23,10 @@ If you have any comments or suggestions, feel free to give me a shout [on Twitte
 - [Virtual Box](#virtual-box)
 - [Adobe Apps](#adobe-apps)
 - [Apps](#apps)
+- [Style guides for additional reading](#style-guides)
+- [Sizeup] (#size-up)
+- [1password] (#1password)
+
 
 ## System update
 
@@ -67,17 +69,14 @@ Package managers make it so much easier to install and update applications (for 
 
 ### Install
 
-An important dependency before Homebrew can work is the **Command Line Tools** for **Xcode**. These include compilers that will allow you to build things from source.
+In the terminal paste the following line
+(without the `$`), hit **Enter**, and follow the steps on the screen:
 
-Now, Xcode weights something like 2GB, and you don't need it unless you're developing iPhone or Mac apps. Good news is Apple provides a way to install only the Command Line Tools, without Xcode. To do this you need to go to [http://developer.apple.com/downloads](http://developer.apple.com/downloads), and sign in with your Apple ID (the same one you use for iTunes and app purchases). Unfortunately, you're greeted by a rather annoying questionnaire. All questions are required, so feel free to answer at random.
+    $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-Once you reach the downloads page, search for "command line tools", and download the latest **Command Line Tools (OS X Mountain Lion) for Xcode**. Open the **.dmg** file once it's done downloading, and double-click on the **.mpkg** installer to launch the installation. When it's done, you can unmount the disk in Finder.
+You'll be prompted to install **Command Line Tools** for **Xcode**. When the installation of Command Line Tools is complete, Homebrew will continue installing.
 
-Finally, we can install Hombrew! In the terminal paste the following line (without the `$`), hit **Enter**, and follow the steps on the screen:
-
-    $ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-
-One thing we need to do is tell the system to use programs installed by Hombrew (in `/usr/local/bin`) rather than the OS default if it exists. We do this by adding `/usr/local/bin` to your `$PATH` environment variable:
+One thing we need to do is tell the system to use programs installed by Homebrew (in `/usr/local/bin`) rather than the OS default if it exists. We do this by adding `/usr/local/bin` to your `$PATH` environment variable:
 
     $ echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
 
@@ -157,6 +156,25 @@ With that, open a new terminal tab (Cmd+T) and see the change! Try the list comm
 At this point you can also change your computer's name, which shows up in this terminal prompt. If you want to do so, go to **System Preferences** > **Sharing**. For example, I changed mine from "Nicolas's MacBook Air" to just "MacBook Air", so it shows up as `MacBook-Air` in the terminal.
 
 Now we have a terminal we can work with!
+
+### Terminal word navigation sanity
+To enable whole-word skipping while holding down alt plus the left or right arrow keys,
+Go to iTerm preferences > Profiles and choose your user profile.
+Then select the 'Keys' tab.
+
+Add the following two shortcuts:
+
+```
+Keyboard Shortcut: alt + left arrow
+Action: send escape sequence
+Enter the letter 'b' in the text field next to 'Esc +'
+```
+
+```
+Keyboard Shortcut: alt + right arrow
+Action: send escape sequence
+Enter 'f' in the text field next to 'Esc +'
+```
 
 (Thanks to Mathias Bynens for his awesome [dotfiles](https://github.com/mathiasbynens/dotfiles).)
 
@@ -270,18 +288,35 @@ Let's create a shortcut so we can launch Sublime Text from the command-line:
 Now I can open a file with `$ subl myfile.py` or start a new project in the current directory with `$ subl .`. Pretty cool. (Note: the path to the apps shared support folder will change depending on the version of sublime.)
 
 ## Sublime Text Packages to install:
-Install the [Sublime Package Control](http://wbond.net/sublime_packages/package_control/installation).
+Install the [Sublime Package Control](http://wbond.net/sublime_packages/package_control/installation). 
 
--Dust
--Sass
--Chai completions
--Chef
--CoffeeLinter
--Backbone
--Backbone Marionette
--Color Highlighter
--Emmet
--Sublime Linter
+To install individual packages, bring up the Command Palette with Cmd+Shift+P and type "install."  Select "Package Control: Install Package." Once the repositories load search for and install the following packages:
+
+- Dust
+- Sass
+- Chai completions
+- Chef
+- CoffeeLinter
+- Backbone
+- Backbone Marionette
+- Color Highlighter
+- Emmet
+- Sublime Linter
+- Plain Tasks
+
+## Customize Sublime Text Packages
+
+It's recommended to style PlainTasks to something more palatable than the default yellow sticky color. 
+
+Download the following Plain Tasks theme [here](https://github.com/monsoonco/mac-dev-setup-js/blob/master/DarkNotes.tmTheme) and add it to the folder ~/Library/Application Support/Sublime Text 2/Packages/PlainTasks
+
+Navigate to Preferences -> Package Settings -> Plain Tasks -> Settings - User and update the config file to contain:
+
+    {
+    ...
+        "color_scheme": "Packages/PlainTasks/DarkNotes.tmTheme"
+    ...
+    }
 
 ## Python
 
@@ -295,6 +330,7 @@ When finished, you should get a summary in the terminal. Running `$ which python
 
 It also installed [Pip]() (and its dependency [Distribute]()), which is the package manager for Python. Let's upgrade them both:
 
+    $ pip install --upgrade setuptools
     $ pip install --upgrade distribute
     $ pip install --upgrade pip
 
@@ -351,9 +387,9 @@ I always add this line to my ~/.bashrc or ~/.profile file (you may need to add t
 
 Use nvm to install the latest version of node
 
-    nvm install 0.10.26
+    nvm install 0.10
 
-Node modules are installed locally in the `node_modules` folder of each project by default, but there are at least two that are worth installing globally. Those are [CoffeeScript](http://coffeescript.org/) and [Grunt](http://gruntjs.com/):
+Node modules are installed locally in the `node_modules` folder of each project by default, but there are at least a few that are worth installing globally. Those are [CoffeeScript](http://coffeescript.org/), [Grunt](http://gruntjs.com/), [Bower](http://bower.io/), and [Yeoman](http://yeoman.io/):
 
     $ npm install -g coffee-script
     $ npm install -g grunt-cli
@@ -528,7 +564,7 @@ Go to the [Adobe Creative Cloud](https://creative.adobe.com/join/starter) site a
 
 Other apps to download:
 
-- [HipChat](https://www.hipchat.com/downloads#mac) Group chat and IM for teams.
+- [Slack](https://slack.com/) Group chat and IM for teams.
 - [Yeoman](http://yeoman.io/): Follow the download instructions. You should already have grunt, but you want yeoman and bower too.
 - [Dropbox](https://www.dropbox.com/): Design shares assets and wireframes and comps with us through Dropbox. You need a dropbox account with your work email.
 - [Google Drive](https://drive.google.com/): File syncing to the cloud too! I use Google Docs a lot to collaborate with others (edit a document with multiple people in real-time!), and sometimes upload other non-Google documents (pictures, etc.), so the app comes in handy for that. **(Free for 5GB)**
@@ -536,3 +572,17 @@ Other apps to download:
 - Spaces: Multiple desktop feature.  Support page for OS X 10.6 [here](http://support.apple.com/kb/ht1624)
 - [Alfred](http://www.alfredapp.com/): Application hot-launching. Open with Option + Space and start typing what you're looking for. Does lots of other cool stuff.
 - [SizeUp](http://www.irradiatedsoftware.com/sizeup/): A window management tool.  Maps shortcuts that arrange your windows into neat little halves/quadrants/etc.  It's a paid app with an unlimited trial period, the caveat being that it will bug you with a "Buy a license prompt" every so often.
+
+
+## Style Guides
+
+ - [Ruby style guide](https://github.com/bbatsov/ruby-style-guide) Best practices for developing in Ruby
+ - [Rails style guide](https://github.com/bbatsov/rails-style-guide) Complimentary guide on Rails styling (many parts are specific to Rails 4.0+)
+
+## Size Up
+ - As with most developers and people that compute, browser management can be a pain. The solution to that is SizeUp.  http://www.irradiatedsoftware.com/sizeup/
+ 
+
+##1Password
+ - With so many accounts needed, how do you keep track of all the passwords?  1Password is the solution.  Each project will have a 1password vault.  If anyone needs to enter a login and password for a project, it's all managed with 1Password.  Download it here https://agilebits.com/onepassword
+
