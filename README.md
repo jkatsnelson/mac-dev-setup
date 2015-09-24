@@ -246,11 +246,11 @@ Just like the terminal, let's configure our editor a little. Go to **Sublime Tex
 
 Feel free to tweak these to your preference. When done, save the file and close it.
 
-I use tab size 2 for everything except Python and Markdown files, where I use tab size 4. If you have a Python and Markdown file handy (or create dummy ones with `$ touch dummy.py`), for each one, open it and go to **Sublime Text 2 > Preferences > Settings - More > Syntax Specific - User** to paste in:
+I use tab size 2 for everything except Python and Markdown files, where I use tab size 4. If you have a Python and Markdown file handy (or create dummy ones with `$ touch dummy.py`), for each one, open it and go to **Sublime Text > Preferences > Settings - More > Syntax Specific - User** to paste in:
 
 ```json
 {
-    "tab_size": 4
+    "tab_size": 2
 }
 ```
 
