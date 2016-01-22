@@ -19,9 +19,6 @@ The document assumes you are new to Mac. The steps below were tested on **OS X M
 - [Ruby and rbenv](#ruby-and-rbenv)
 - [Heroku](#heroku)
 - [Projects folder](#projects-folder)
-- [Vagrant](#vagrant)
-- [Virtual Box](#virtual-box)
-- [Adobe Apps](#adobe-apps)
 - [Apps](#apps)
 - [Style guides for additional reading](#style-guides)
 - [Sizeup] (#size-up)
@@ -541,25 +538,6 @@ The [Heroku Dev Center](https://devcenter.heroku.com/) is full of great resource
 
 This really depends on how you want to organize your files, but I like to put all my version-controlled projects in `~/Projects`. Other documents I may have, or things not yet under version control, I like to put in `~/Code`.
 
-
-## Vagrant
-
-[Vagrant](http://www.vagrantup.com/) is open-source software for creating and configuring virtual development environments. It can be considered a wrapper around VirtualBox and configuration management software such as Chef, Salt and Puppet.
-
-[Download](http://www.vagrantup.com/downloads.html) the latest stable version (v1.3.5), open the installer and follow the instructions.
-
-
-## Virtual Box
-
-Oracle VM [Virtual Box](https://www.virtualbox.org/wiki/Downloads) is a virtualization tool that allows you to create virtual machines on Mac OS X, Linux, or Windows.
-
-[Download](https://www.virtualbox.org/wiki/Downloads) and start the installer and follow the instructions.
-
-
-## Adobe Apps
-
-Go to the [Adobe Creative Cloud](https://creative.adobe.com/join/starter) site and set up an account. You'll download the creative cloud app which will allow you to download 30 day trial versions of any application you may need. Monsoon can provide licenses as needed when the trial version of the application has expired.
-
 ## Apps
 
 Other apps to download:
@@ -572,7 +550,6 @@ Other apps to download:
 - Spaces: Multiple desktop feature.  Support page for OS X 10.6 [here](http://support.apple.com/kb/ht1624)
 - [Alfred](http://www.alfredapp.com/): Application hot-launching. Open with Option + Space and start typing what you're looking for. Does lots of other cool stuff.
 - [SizeUp](http://www.irradiatedsoftware.com/sizeup/): A window management tool.  Maps shortcuts that arrange your windows into neat little halves/quadrants/etc.  It's a paid app with an unlimited trial period, the caveat being that it will bug you with a "Buy a license prompt" every so often.
-
 
 ## Style Guides
 
